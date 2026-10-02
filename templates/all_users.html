@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin & Coach View – FitBuddy</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="/" class="brand-title">💪 FitBuddy</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/view-all-users" class="nav-link" style="color: #60a5fa;">Admin / Coaches</a>
+      <a href="/docs" target="_blank" class="nav-link">API Docs</a>
+    </div>
+  </nav>
+
+  <main class="main-wrapper" style="align-items: flex-start;">
+    <div class="admin-container">
+      <h1 class="page-title">📋 FitBuddy - All Users & Workout Plans</h1>
+      <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">
+        Coach and administrator portal to monitor registered athletes, review workout structures, and inspect revisions.
+      </p>
+
+      {% if users %}
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Weight (kg)</th>
+              <th>Goal</th>
+              <th>Intensity</th>
+              <th>Original Plan</th>
+              <th>Updated Plan</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td><strong>{{ user.id }}</strong></td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.age }}</td>
+              <td>{{ user.weight }}</td>
+              <td>{{ user.goal }}</td>
+              <td>
+                <span class="badge badge-{{ user.intensity|lower }}">{{ user.intensity }}</span>
+              </td>
+              <td class="table-plan-cell">
+                <pre>{{ user.original_plan }}</pre>
+              </td>
+              <td class="table-plan-cell">
+                <pre>{{ user.updated_plan }}</pre>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div style="text-align: center; padding: 3rem 1rem; background: #f8fafc; border-radius: 8px;">
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem;">No users or fitness plans recorded in the database yet.</p>
+        <a href="/" class="btn btn-primary" style="width: auto;">Generate the First Workout Plan</a>
+      </div>
+      {% endif %}
+
+      <div style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" class="btn btn-secondary">← Back to Home Form</a>
+        <a href="/docs" target="_blank" class="btn btn-primary" style="width: auto;">Interactive API Documentation</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

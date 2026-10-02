@@ -1,0 +1,22 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+fitbuddy-env/
+.env
+
+# SQLite Database
+*.db
+*.sqlite
+*.sqlite3
+fitbuddy.db
+
+# OS & IDE files
+.DS_Store
+.vscode/
+.idea/
+*.swp

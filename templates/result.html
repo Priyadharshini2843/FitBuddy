@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Personalized Workout Plan – FitBuddy</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="/" class="brand-title">💪 FitBuddy</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">← New Plan</a>
+      <a href="/view-all-users" class="nav-link">Coach Dashboard</a>
+      <a href="/docs" target="_blank" class="nav-link">API Docs</a>
+    </div>
+  </nav>
+
+  <main class="main-wrapper">
+    <div class="card-container-large">
+
+      <h1 class="page-title">🏋️ Your Personalized Workout Plan</h1>
+
+      <!-- Feedback Confirmation Banner -->
+      {% if update_success %}
+      <div class="alert-box alert-success">
+        ✅ <strong>Your plan has been updated based on your feedback!</strong>
+      </div>
+      {% endif %}
+
+      <!-- User Information Summary -->
+      <h2 class="section-title">User Information</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span class="summary-label">Name</span>
+          <span class="summary-value">{{ username }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">User ID</span>
+          <span class="summary-value">{{ user_id }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Age</span>
+          <span class="summary-value">{{ age }} yrs</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Weight</span>
+          <span class="summary-value">{{ weight }} kg</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Goal</span>
+          <span class="summary-value">{{ goal }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Intensity</span>
+          <span class="summary-value">
+            <span class="badge badge-{{ intensity|lower }}">{{ intensity }}</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Updated Plan Display (Rendered when updated) -->
+      {% if updated_plan %}
+      <h2 class="section-title" style="color: #047857;">🔄 Updated Workout Plan (Based on Your Feedback)</h2>
+      <pre class="workout-block" style="border: 2px solid #86efac; background-color: #f0fdf4;">{{ updated_plan }}</pre>
+
+      <h2 class="section-title" style="color: #64748b;">📋 Original Workout Plan</h2>
+      <pre class="workout-block">{{ workout_plan }}</pre>
+      {% else %}
+      <!-- Original Workout Plan Display -->
+      <h2 class="section-title">Workout Plan</h2>
+      <pre class="workout-block">{{ workout_plan }}</pre>
+      {% endif %}
+
+      <!-- Nutrition / Recovery Tip -->
+      {% if nutrition_tip %}
+      <h2 class="section-title">💡 Nutrition Tip</h2>
+      <div class="tip-box">
+        {{ nutrition_tip }}
+      </div>
+      {% endif %}
+
+      <!-- Feedback Section -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.75rem; margin-top: 2rem;">
+        <h2 class="section-title" style="margin-top: 0;">📝 Share Your Feedback</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
+          Want to adjust your routine? Request more cardio, substitute an exercise, or add rest days. Our AI trainer will regenerate your routine accordingly.
+        </p>
+
+        <form action="/submit-feedback" method="POST">
+          <div class="form-group">
+            <label for="feedback_user_id" class="form-label">Your Unique User ID:</label>
+            <input type="number" id="feedback_user_id" name="user_id" value="{{ user_id }}" class="form-input" required readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback" class="form-label">Your Feedback:</label>
+            <textarea id="feedback" name="feedback" class="form-textarea" placeholder="Let us know how we can improve your plan (e.g. 'Add 15 minutes of yoga on cooldown days and substitute barbell squats with dumbbell squats')..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="/" class="btn btn-secondary">← Back to Generator Form</a>
+      </div>
+
+      <div class="disclaimer-box">
+        ℹ️ <strong>Health & Safety Note:</strong> Remember to stay adequately hydrated, maintain strict technique to avoid injury, and stop exercising immediately if you feel pain or dizziness.
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
