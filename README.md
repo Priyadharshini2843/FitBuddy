@@ -21,7 +21,6 @@ The FitBuddy project is developed collaboratively by the following team members.
 3. **Adaptive Feedback Loop:** Allows users to request modifications, such as adding yoga or increasing cardio, while preserving the original workout plan.
 4. **Admin / Coach Dashboard:** The `/view-all-users` dashboard allows administrators or coaches to view registered athletes and compare original and revised workout plans.
 5. **Interactive Swagger API:** The `/docs` endpoint provides interactive API documentation for testing REST API endpoints.
-6. **Graceful Offline Mode:** Includes a mock fallback for testing supported application functionality without an active Gemini API key.
 
 ## 🛠️ Technology Stack
 
