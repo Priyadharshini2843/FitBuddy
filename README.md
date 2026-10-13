@@ -2,8 +2,6 @@
 
 FitBuddy is an intelligent, full-stack fitness plan generator powered by Google's Gemini generative AI models, FastAPI, and SQLAlchemy. It generates personalized 7-day workout plans, goal-specific nutrition recommendations, and adaptive workout revisions based on user feedback.
 
-Users can customize recommendations according to their fitness goals and preferences, track their workout completion, monitor their progress, and adapt their plans as their needs change.
-
 ## 👥 Project Team Members
 
 The FitBuddy project is developed collaboratively by the following team members.
